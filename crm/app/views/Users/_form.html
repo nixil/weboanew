@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="label">Name</div>
+    <div class="field">
+        <div class="row">
+            <div class="label">First</div>
+            <div class="field">
+                <input type="text" name="entity.name.first" value="${entity?.name?.first}"/>
+            </div>
+            <span class="error">${errors.forKey('entity.name.first')}</span>
+        </div>
+        <div class="row">
+            <div class="label">Last</div>
+            <div class="field">
+                <input type="text" name="entity.name.last" value="${entity?.name?.last}"/>
+            </div>
+            <span class="error">${errors.forKey('entity.name.last')}</span>
+        </div>
+    </div>
+    <span class="error">${errors.forKey('entity.name')}</span>
+</div>
+<div class="row">
+    <div class="label">Email</div>
+    <div class="field">
+        <input type="text" name="entity.email" value="${entity?.email}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.email')}</span>
+</div>
+<div class="row">
+    <div class="label">Password</div>
+    <div class="field">
+        <input type="text" name="entity.password" value="${entity?.password}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.password')}</span>
+</div>
+<div class="row">
+    <div class="label">Group</div>
+    <div class="field">
+        <select name="entity.group.id">
+            <option value="">(None)</option>
+        %{ models.UserGroup.all().fetch().sort{ it.toString() }.each() { }%
+        %{
+            selected = false;
+            if (entity?.group?.id == it.id) {
+            selected = true
+            }
+            }%
+            <option value="${it?.id}" ${selected ? 'selected'.raw() : ''}>${it}</option>
+        %{ } }%
+        </select>
+    </div>
+    <span class="error">${errors.forKey('entity.group')}</span>
+</div>
+<div class="row">
+    <div class="label"></div>
+    <div class="field">
+        <input type="hidden" name="entity.id" value="${entity?.id}"/>
+    </div>
+    <span class="error">${errors.forKey('entity.id')}</span>
+</div>
+

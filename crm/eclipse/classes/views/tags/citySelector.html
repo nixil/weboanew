@@ -1,0 +1,5 @@
+<select>
+    #{list models.core.City.all().fetch()}
+    <option value="${_.code}">${_.name}</option>
+    #{/list}
+</select>

@@ -1,0 +1,10 @@
+#{extends 'main.html' /}
+<h2>Create Role</h2>
+<div class="entity">
+#{form @Roles.save(), id:'createForm'}
+	#{include 'Roles/_form.html' /}
+	<input type="submit" name="submit" value="Save" />
+#{/form}
+</div>
+<a href="@{Roles.index}">Cancel</a>
+
